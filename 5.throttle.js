@@ -24,7 +24,7 @@
  */
 
 /**
- * 手动实现防抖函数
+ * 手动实现节流函数
  *
  * @param {Function} fn 要节流的函数。
  * @param {number} delay 延迟的毫秒数。
