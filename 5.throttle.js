@@ -34,7 +34,7 @@
  */
 function throttle(fn, delay, leading = true, trailing = false) {
   // 上次执行的时间戳
-  let lastExecTime = 0;
+  let lastExecTime = null;
   // 定时器变量
   let timer = null;
   // 待执行的参数
@@ -58,7 +58,7 @@ function throttle(fn, delay, leading = true, trailing = false) {
     }
 
     // 首次执行(leading为true时)
-    if (leading && lastExecTime === 0) {
+    if (leading && !lastExecTime) {
       execute(args);
       return;
     }
