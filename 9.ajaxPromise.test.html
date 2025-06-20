@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ajaxPromise测试</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 15px;
+      }
+      h1 {
+        text-align: center;
+      }
+      .test-section {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      .result {
+        margin-top: 10px;
+        padding: 5px;
+        font-family: monospace;
+        white-space: pre-wrap;
+      }
+      .success {
+        color: green;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ajaxPromise测试</h1>
+
+    <div class="test-section">
+      <h3>GET请求测试</h3>
+      <button onclick="testGet()">执行GET测试</button>
+      <button onclick="testGetTimeout()">测试超时</button>
+      <button onclick="testGetError()">测试错误</button>
+      <div id="get-result" class="result">点击按钮开始测试</div>
+    </div>
+
+    <div class="test-section">
+      <h3>POST请求测试</h3>
+      <button onclick="testPost()">执行POST测试</button>
+      <div id="post-result" class="result">点击按钮开始测试</div>
+    </div>
+
+
+    <script src="./9.ajaxPromise.js"></script>
+    <script>
+      // 显示结果
+      function displayResult(elementId, data, isSuccess = true) {
+        const element = document.getElementById(elementId);
+        element.textContent = JSON.stringify(data, null, 2);
+        element.className = isSuccess ? "result success" : "result error";
+      }
+
+      // 测试GET请求
+      async function testGet() {
+        try {
+          displayResult("get-result", "正在发送GET请求...");
+          const result = await ajaxPromise(
+            "https://jsonplaceholder.typicode.com/todos/1"
+          );
+          displayResult("get-result", result);
+        } catch (error) {
+          displayResult("get-result", error, false);
+        }
+      }
+
+      // 测试请求超时
+      async function testGetTimeout() {
+        try {
+          displayResult("get-result", "正在测试超时...");
+          // 设置1毫秒的超时时间，确保会触发超时
+          const result = await ajaxPromise(
+            "https://jsonplaceholder.typicode.com/todos/1",
+            "GET",
+            null,
+            { timeout: 1 }
+          );
+          displayResult("get-result", result);
+        } catch (error) {
+          displayResult("get-result", error, false);
+        }
+      }
+
+      // 测试请求错误
+      async function testGetError() {
+        try {
+          displayResult("get-result", "正在测试错误...");
+          // 使用不存在的URL触发错误
+          const result = await ajaxPromise(
+            "https://jsonplaceholder.typicode.com/noExistence"
+          );
+          displayResult("get-result", result);
+        } catch (error) {
+          displayResult("get-result", error, false);
+        }
+      }
+
+      // 测试POST请求
+      async function testPost() {
+        try {
+          displayResult("post-result", "正在发送POST请求...");
+          const data = {
+            title: "测试标题",
+            body: "测试内容",
+            userId: 1,
+          };
+          const result = await ajaxPromise(
+            "https://jsonplaceholder.typicode.com/posts",
+            "POST",
+            data
+          );
+          displayResult("post-result", result);
+        } catch (error) {
+          displayResult("post-result", error, false);
+        }
+      }
+    </script>
+  </body>
+</html>
