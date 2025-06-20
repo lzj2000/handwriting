@@ -1,13 +1,4 @@
 /**
- * 手写实现 Generator 转 Async/Await
- * 
- * 在JavaScript的异步编程发展历程中，从回调函数到Promise，再到Generator，最终到Async/Await，
- * 每一步都是为了让异步代码更加直观和易于维护。本实现展示了如何通过Generator函数模拟Async/Await的核心原理，
- * 帮助深入理解JavaScript异步编程的底层机制。
- * 
- * 通过这个实现，我们可以看到Async/Await实际上是Generator和自动执行器的语法糖，它让异步代码看起来像同步代码，
- * 大大提高了代码的可读性和可维护性。这个手写实现不仅是一个学习工具，也是理解JavaScript异步编程本质的窗口。
- *
  * 需求理解
  *
  * 一、目标
