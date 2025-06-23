@@ -37,14 +37,18 @@
  * @returns {Promise<any>} 返回Promise，成功时解析为响应数据（自动反序列化），失败时拒绝并提供错误信息
  */
 function ajaxPromise(url, method = "GET", data = null, options = {}) {
-  return new Promise((resolve, reject) => {
+  // 存储xhr实例，用于手动中断请求
+  let xhr;
+
+  // 创建主请求Promise
+  const fetchPromise = new Promise((resolve, reject) => {
     const defaultOptions = {
       timeout: 10000,
       responseType: "",
     };
     const mergedOptions = { ...defaultOptions, ...options };
 
-    const xhr = new XMLHttpRequest();
+    xhr = new XMLHttpRequest();
     xhr.timeout = mergedOptions.timeout;
     xhr.open(method, url, true);
     if (mergedOptions.responseType) {
@@ -111,5 +115,37 @@ function ajaxPromise(url, method = "GET", data = null, options = {}) {
 
     // 发送请求
     xhr.send(processedData);
+
+    return;
+  });
+
+  // 创建超时Promise
+  const timeoutPromise = new Promise((_, reject) => {
+    const { timeout, timeoutMessage } = { ...options };
+    const timer = setTimeout(() => {
+
+      reject({
+        status: 0,
+        statusText: "请求超时",
+        error: new Error("请求超时"),
+        isManualTimeout: true,
+      });
+    }, timeout || 10000);
+  });
+
+  // 使用Promise.race竞争，谁先完成就返回谁的结果
+  return Promise.race([fetchPromise, timeoutPromise]).catch((error) => {
+    console.log(error);
+    // 如果是手动超时，尝试中断XHR请求
+    if (error && error.isManualTimeout && xhr) {
+      try {
+        xhr.abort();
+      } catch (e) {
+        console.warn("中断请求失败:", e);
+      }
+    }
+
+    // 继续抛出错误
+    return Promise.reject(error);
   });
 }
