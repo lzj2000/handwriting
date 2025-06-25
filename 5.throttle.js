@@ -37,14 +37,11 @@ function throttle(fn, delay, leading = true, trailing = false) {
   let lastExecTime = null;
   // 定时器变量
   let timer = null;
-  // 待执行的参数
-  let pendingArgs = null;
 
   const execute = (args) => {
     fn.apply(this, args);
     lastExecTime = Date.now();
     timer = null;
-    pendingArgs = null;
   };
 
   return function (...args) {
@@ -69,8 +66,7 @@ function throttle(fn, delay, leading = true, trailing = false) {
     }
     // 未达到延迟时间且需要尾部执行
     else if (trailing) {
-      pendingArgs = args;
-      timer = setTimeout(() => execute(pendingArgs), delay - elapsed);
+      timer = setTimeout(() => execute(args), delay - elapsed);
     }
   };
 }
