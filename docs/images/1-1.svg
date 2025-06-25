@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="350" viewBox="0 0 800 350">
+  <!-- 背景 -->
+  <rect width="800" height="350" fill="#f8f9fa" />
+  
+  <!-- 标题 -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold" fill="#333">防抖(Debounce)原理图</text>
+  
+  <!-- 时间轴 -->
+  <line x1="100" y1="200" x2="700" y2="200" stroke="#333" stroke-width="2" />
+  <polygon points="700,200 690,195 690,205" fill="#333" />
+  <text x="710" y="205" font-family="Arial" font-size="14" fill="#333">时间</text>
+  
+  <!-- 时间刻度 -->
+  <line x1="100" y1="195" x2="100" y2="205" stroke="#333" stroke-width="2" />
+  <line x1="200" y1="195" x2="200" y2="205" stroke="#333" stroke-width="2" />
+  <line x1="300" y1="195" x2="300" y2="205" stroke="#333" stroke-width="2" />
+  <line x1="400" y1="195" x2="400" y2="205" stroke="#333" stroke-width="2" />
+  <line x1="500" y1="195" x2="500" y2="205" stroke="#333" stroke-width="2" />
+  <line x1="600" y1="195" x2="600" y2="205" stroke="#333" stroke-width="2" />
+  <line x1="700" y1="195" x2="700" y2="205" stroke="#333" stroke-width="2" />
+  
+  <!-- 时间标签 -->
+  <text x="100" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">0ms</text>
+  <text x="200" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">100ms</text>
+  <text x="300" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">200ms</text>
+  <text x="400" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">300ms</text>
+  <text x="500" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">400ms</text>
+  <text x="600" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">500ms</text>
+  <text x="700" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">600ms</text>
+  
+  <!-- 事件触发点 -->
+  <circle cx="120" cy="150" r="6" fill="#e74c3c" />
+  <circle cx="180" cy="150" r="6" fill="#e74c3c" />
+  <circle cx="260" cy="150" r="6" fill="#e74c3c" />
+  <circle cx="320" cy="150" r="6" fill="#e74c3c" />
+  <circle cx="380" cy="150" r="6" fill="#e74c3c" />
+  <circle cx="500" cy="150" r="6" fill="#e74c3c" />
+  
+  <!-- 事件触发连线 -->
+  <line x1="100" y1="150" x2="700" y2="150" stroke="#e74c3c" stroke-width="1" stroke-dasharray="2,2" />
+  <text x="80" y="150" font-family="Arial" font-size="12" text-anchor="end" fill="#e74c3c">事件触发</text>
+  
+  <!-- 延迟区域 - 第一组事件 -->
+  <rect x="380" y="240" width="100" height="30" fill="#3498db" opacity="0.3" rx="5" />
+  <text x="430" y="260" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">延迟等待</text>
+  
+  <!-- 延迟区域 - 第二组事件 -->
+  <rect x="500" y="240" width="100" height="30" fill="#3498db" opacity="0.3" rx="5" />
+  <text x="550" y="260" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">延迟等待</text>
+  
+  <!-- 函数执行点 -->
+  <circle cx="480" cy="300" r="8" fill="#2ecc71" />
+  <circle cx="600" cy="300" r="8" fill="#2ecc71" />
+  
+  <!-- 函数执行连线 -->
+  <line x1="100" y1="300" x2="700" y2="300" stroke="#2ecc71" stroke-width="1" stroke-dasharray="2,2" />
+  <text x="80" y="300" font-family="Arial" font-size="12" text-anchor="end" fill="#2ecc71">函数执行</text>
+  
+  <!-- 箭头和说明 -->
+  <line x1="380" y1="160" x2="380" y2="235" stroke="#e74c3c" stroke-width="1" stroke-dasharray="5,5" />
+  <line x1="480" y1="270" x2="480" y2="292" stroke="#2ecc71" stroke-width="1.5" />
+  <line x1="500" y1="160" x2="500" y2="235" stroke="#e74c3c" stroke-width="1" stroke-dasharray="5,5" />
+  <line x1="600" y1="270" x2="600" y2="292" stroke="#2ecc71" stroke-width="1.5" />
+</svg>

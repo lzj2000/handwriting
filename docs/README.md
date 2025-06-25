@@ -4,7 +4,7 @@
 
 ## 文档目录
 
-- [防抖与节流](./throttle-debounce.md) - 详细介绍了防抖(Debounce)和节流(Throttle)的原理、实现和应用场景
+- [防抖与节流](./1.防抖与节流.md) - 详细介绍了防抖(Debounce)和节流(Throttle)的原理、实现和应用场景
 
 ## 使用说明
 

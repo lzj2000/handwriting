@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="350" viewBox="0 0 800 350">
+  <!-- 背景 -->
+  <rect width="800" height="350" fill="#f8f9fa" />
+  
+  <!-- 标题 -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold" fill="#333">节流(Throttle)原理图</text>
+  
+  <!-- 时间轴 -->
+  <line x1="100" y1="200" x2="700" y2="200" stroke="#333" stroke-width="2" />
+  <polygon points="700,200 690,195 690,205" fill="#333" />
+  <text x="710" y="205" font-family="Arial" font-size="14" fill="#333">时间</text>
+  
+  <!-- 时间刻度 -->
+  <line x1="100" y1="195" x2="100" y2="205" stroke="#333" stroke-width="2" />
+  <line x1="200" y1="195" x2="200" y2="205" stroke="#333" stroke-width="2" />
+  <line x1="300" y1="195" x2="300" y2="205" stroke="#333" stroke-width="2" />
+  <line x1="400" y1="195" x2="400" y2="205" stroke="#333" stroke-width="2" />
+  <line x1="500" y1="195" x2="500" y2="205" stroke="#333" stroke-width="2" />
+  <line x1="600" y1="195" x2="600" y2="205" stroke="#333" stroke-width="2" />
+  
+  <!-- 时间标签 -->
+  <text x="100" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">0ms</text>
+  <text x="200" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">100ms</text>
+  <text x="300" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">200ms</text>
+  <text x="400" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">300ms</text>
+  <text x="500" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">400ms</text>
+  <text x="600" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#666">500ms</text>
+  
+  <!-- 时间间隔区域 -->
+  <rect x="120" y="240" width="180" height="30" fill="#20c997" fill-opacity="0.3" rx="5" />
+  <text x="210" y="260" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">时间间隔(wait)</text>
+  
+  <rect x="320" y="240" width="180" height="30" fill="#20c997" fill-opacity="0.3" rx="5" />
+  <text x="410" y="260" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">时间间隔(wait)</text>
+  
+  <rect x="520" y="240" width="180" height="30" fill="#20c997" fill-opacity="0.3" rx="5" />
+  <text x="610" y="260" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">时间间隔(wait)</text>
+  
+  <!-- 事件触发点 -->
+  <circle cx="120" cy="150" r="6" fill="#ff6b6b" />
+  <circle cx="160" cy="150" r="6" fill="#ff6b6b" />
+  <circle cx="190" cy="150" r="6" fill="#ff6b6b" />
+  <circle cx="230" cy="150" r="6" fill="#ff6b6b" />
+  <circle cx="280" cy="150" r="6" fill="#ff6b6b" />
+  <circle cx="320" cy="150" r="6" fill="#ff6b6b" />
+  <circle cx="380" cy="150" r="6" fill="#ff6b6b" />
+  <circle cx="450" cy="150" r="6" fill="#ff6b6b" />
+  <circle cx="520" cy="150" r="6" fill="#ff6b6b" />
+  <circle cx="580" cy="150" r="6" fill="#ff6b6b" />
+  <circle cx="650" cy="150" r="6" fill="#ff6b6b" />
+  
+  <!-- 事件触发连线 -->
+  <line x1="100" y1="150" x2="700" y2="150" stroke="#ff6b6b" stroke-width="1" stroke-dasharray="2,2" />
+  <text x="80" y="150" font-family="Arial" font-size="12" text-anchor="end" fill="#ff6b6b">事件触发</text>
+  
+  <!-- 函数执行点 -->
+  <circle cx="120" cy="300" r="8" fill="#4dabf7" />
+  <circle cx="320" cy="300" r="8" fill="#4dabf7" />
+  <circle cx="520" cy="300" r="8" fill="#4dabf7" />
+  
+  <!-- 函数执行连线 -->
+  <line x1="100" y1="300" x2="700" y2="300" stroke="#4dabf7" stroke-width="1" stroke-dasharray="2,2" />
+  <text x="80" y="300" font-family="Arial" font-size="12" text-anchor="end" fill="#4dabf7">函数执行</text>
+  
+  <!-- 箭头和说明 -->
+  <line x1="120" y1="160" x2="120" y2="290" stroke="#20c997" stroke-width="1.5" />
+  <line x1="320" y1="160" x2="320" y2="290" stroke="#20c997" stroke-width="1.5" />
+  <line x1="520" y1="160" x2="520" y2="290" stroke="#20c997" stroke-width="1.5" />
+</svg>
