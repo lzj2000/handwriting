@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="600" viewBox="0 0 700 600">
+  <!-- 定义渐变和样式 -->
+  <defs>
+    <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4a6fa5" />
+      <stop offset="100%" stop-color="#2a4d7f" />
+    </linearGradient>
+    <linearGradient id="boxGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f5f7fa" />
+      <stop offset="100%" stop-color="#e4e8ef" />
+    </linearGradient>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#edf2f7" />
+    </linearGradient>
+    <filter id="shadow" x="-2" y="-2" width="104%" height="104%">
+      <feOffset result="offOut" in="SourceAlpha" dx="2" dy="2" />
+      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="2" />
+      <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+    </filter>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect x="0" y="0" width="700" height="600" fill="url(#bgGradient)" />
+  
+  <!-- 标题 -->
+  <rect x="150" y="20" width="400" height="60" rx="5" fill="url(#headerGradient)" filter="url(#shadow)" />
+  <text x="350" y="55" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">Generator转async实现思路</text>
+  
+  <!-- 实现流程部分 -->
+  <rect x="50" y="100" width="600" height="450" rx="5" fill="white" stroke="#d9d9d9" stroke-width="1.5" filter="url(#shadow)" />
+  
+  <!-- 步骤1: 创建包装函数 -->
+  <rect x="100" y="130" width="500" height="60" rx="5" fill="url(#boxGradient)" stroke="#2a4d7f" stroke-width="1.5" filter="url(#shadow)" />
+  <text x="350" y="165" font-family="Arial, sans-serif" font-size="16" fill="#333" text-anchor="middle">1. 创建包装函数，返回Promise</text>
+  
+  <!-- 箭头1 -->
+  <path d="M350 190 L350 210" stroke="#4a6fa5" stroke-width="2" fill="none" />
+  <polygon points="350,220 345,210 355,210" fill="#4a6fa5" />
+  
+  <!-- 步骤2: 创建迭代器 -->
+  <rect x="100" y="220" width="500" height="60" rx="5" fill="url(#boxGradient)" stroke="#2a4d7f" stroke-width="1.5" filter="url(#shadow)" />
+  <text x="350" y="255" font-family="Arial, sans-serif" font-size="16" fill="#333" text-anchor="middle">2. 创建Generator迭代器</text>
+  
+  <!-- 箭头2 -->
+  <path d="M350 280 L350 300" stroke="#4a6fa5" stroke-width="2" fill="none" />
+  <polygon points="350,310 345,300 355,300" fill="#4a6fa5" />
+  
+  <!-- 步骤3: 递归执行next -->
+  <rect x="100" y="310" width="500" height="60" rx="5" fill="url(#boxGradient)" stroke="#2a4d7f" stroke-width="1.5" filter="url(#shadow)" />
+  <text x="350" y="345" font-family="Arial, sans-serif" font-size="16" fill="#333" text-anchor="middle">3. 递归执行next()，自动推进迭代器</text>
+  
+  <!-- 箭头3 -->
+  <path d="M350 370 L350 390" stroke="#4a6fa5" stroke-width="2" fill="none" />
+  <polygon points="350,400 345,390 355,390" fill="#4a6fa5" />
+  
+  <!-- 步骤4: 处理yield值 -->
+  <rect x="100" y="400" width="500" height="60" rx="5" fill="url(#boxGradient)" stroke="#2a4d7f" stroke-width="1.5" filter="url(#shadow)" />
+  <text x="350" y="425" font-family="Arial, sans-serif" font-size="16" fill="#333" text-anchor="middle">4. 处理yield返回值 (Promise.resolve转换)</text>
+  <text x="350" y="445" font-family="Arial, sans-serif" font-size="16" fill="#333" text-anchor="middle">自动等待Promise完成并传递结果给下一个next()</text>
+  
+  <!-- 循环箭头 -->
+  <path d="M600 345 L630 345 L630 255 L600 255" stroke="#4a6fa5" stroke-width="2" fill="none" stroke-dasharray="5,3" />
+  <polygon points="600,255 610,250 610,260" fill="#4a6fa5" />
+  <text x="650" y="300" font-family="Arial, sans-serif" font-size="14" fill="#4a6fa5" text-anchor="middle">递归循环</text>
+  
+  <!-- 完成箭头 -->
+  <path d="M350 460 L350 480" stroke="#4a6fa5" stroke-width="2" fill="none" />
+  <polygon points="350,490 345,480 355,480" fill="#4a6fa5" />
+  
+  <!-- 最终结果 -->
+  <rect x="100" y="490" width="500" height="60" rx="5" fill="url(#boxGradient)" stroke="#2a4d7f" stroke-width="1.5" filter="url(#shadow)" />
+  <text x="350" y="525" font-family="Arial, sans-serif" font-size="16" fill="#333" text-anchor="middle">5. 迭代完成时resolve最终结果</text>
+</svg>
