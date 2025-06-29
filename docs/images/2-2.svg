@@ -60,9 +60,9 @@
   <text x="350" y="445" font-family="Arial, sans-serif" font-size="16" fill="#333" text-anchor="middle">自动等待Promise完成并传递结果给下一个next()</text>
   
   <!-- 循环箭头 -->
-  <path d="M600 345 L630 345 L630 255 L600 255" stroke="#4a6fa5" stroke-width="2" fill="none" stroke-dasharray="5,3" />
-  <polygon points="600,255 610,250 610,260" fill="#4a6fa5" />
-  <text x="650" y="300" font-family="Arial, sans-serif" font-size="14" fill="#4a6fa5" text-anchor="middle">递归循环</text>
+  <path d="M600 430 L630 430 L630 345 L600 345" stroke="#4a6fa5" stroke-width="2" fill="none" stroke-dasharray="5,3" />
+  <polygon points="600,345 610,340 610,350" fill="#4a6fa5" />
+  <text x="650" y="390" font-family="Arial, sans-serif" font-size="14" fill="#4a6fa5" text-anchor="middle">递归循环</text>
   
   <!-- 完成箭头 -->
   <path d="M350 460 L350 480" stroke="#4a6fa5" stroke-width="2" fill="none" />
