@@ -30,24 +30,26 @@
  * @returns {Array} 扁平化后的新数组
  */
 function flattenArray(arr, depth) {
-    depth = (typeof depth === 'undefined') ? Infinity : depth;
-    if (depth === 0) {
-        return arr.slice();
-    }
+  depth = typeof depth === "undefined" ? Infinity : depth;
+  if (depth === 0) {
+    return arr.slice();
+  }
 
-    var result = [];
-    // 使用for循环遍历数组元素
-    for (var i = 0; i < arr.length; i++) {
-        // 使用Array.isArray检查是否为数组
-        if (Array.isArray(arr[i])) {
-            // 通过参数控制递归深度
-            result = result.concat(flattenArray(arr[i], depth - 1));
-        } else {
-            result.push(arr[i]);
-        }
+  var result = [];
+  // 使用for循环遍历数组元素
+  for (var i = 0; i < arr.length; i++) {
+    // 使用Array.isArray检查是否为数组
+    if (Array.isArray(arr[i]) && depth > 0) {
+      // 通过参数控制递归深度
+      var flattenedSubArray = flattenArray(arr[i], depth - 1);
+      // apply 方法允许我们指定函数的 this 值和参数列表
+      Array.prototype.push.apply(result, flattenedSubArray);
+    } else {
+      result.push(arr[i]);
     }
+  }
 
-    return result;
+  return result;
 }
 
 // 测试
