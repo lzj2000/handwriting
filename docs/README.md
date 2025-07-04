@@ -6,6 +6,7 @@
 
 - [防抖与节流](./1.防抖与节流.md) - 详细介绍了防抖(Debounce)和节流(Throttle)的原理、实现和应用场景
 - [async/await 实现](./2.async%20await实现.md) - 解析 async/await 的原理，以及如何使用 Generator 函数模拟实现 async/await 的功能
+- [数组扁平化](./3.数组扁平化.md) - 介绍数组扁平化的概念、多种实现方式及性能对比分析
 
 ## 使用说明
 
