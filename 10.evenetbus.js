@@ -92,3 +92,71 @@ class eventBus {
     return this;
   }
 }
+
+// 创建测试函数
+function testEventBus() {
+  // 创建eventBus实例
+  const bus = new eventBus();
+  console.log('创建eventBus实例成功');
+  
+  // 测试on和emit方法
+  console.log('\n----- 测试 on 和 emit 方法 -----');
+  let count = 0;
+  const handler1 = (data) => {
+    count++;
+    console.log(`事件处理函数1被调用，接收到的数据: ${JSON.stringify(data)}`);
+  };
+  
+  bus.on('increment', handler1);
+  console.log('注册事件「increment」的监听器');
+  
+  bus.emit('increment', { value: 10 });
+  console.log(`事件触发后count值: ${count}`);
+  
+  // 测试多次触发
+  bus.emit('increment', { value: 20 });
+  bus.emit('increment', { value: 30 });
+  console.log(`多次触发后count值: ${count}`);
+  
+  // 测试多个监听器
+  console.log('\n----- 测试多个监听器 -----');
+  const handler2 = (data) => {
+    console.log(`事件处理函数2被调用，接收到的数据: ${JSON.stringify(data)}`);
+  };
+  
+  bus.on('increment', handler2);
+  console.log('为同一事件「increment」注册第二个监听器');
+  
+  bus.emit('increment', { value: 40 });
+  console.log('触发事件，两个监听器都应该被调用');
+  
+  // 测试off方法
+  console.log('\n----- 测试 off 方法 -----');
+  bus.off('increment', handler1);
+  console.log('移除事件「increment」的第一个监听器');
+  
+  bus.emit('increment', { value: 50 });
+  console.log('触发事件，只有第二个监听器应该被调用');
+  
+  // 测试once方法
+  console.log('\n----- 测试 once 方法 -----');
+  let onceCount = 0;
+  const onceHandler = (data) => {
+    onceCount++;
+    console.log(`一次性事件处理函数被调用，接收到的数据: ${JSON.stringify(data)}`);
+  };
+  
+  bus.once('onceEvent', onceHandler);
+  console.log('注册一次性事件「onceEvent」的监听器');
+  
+  bus.emit('onceEvent', { message: '这是第一次调用' });
+  console.log(`一次性事件第一次触发后onceCount值: ${onceCount}`);
+  
+  bus.emit('onceEvent', { message: '这是第二次调用' });
+  console.log(`一次性事件第二次触发后onceCount值: ${onceCount}，应该仍为1`);
+  
+  console.log('\n===== eventBus 测试完成 =====');
+}
+
+// 运行测试
+testEventBus();
