@@ -31,7 +31,7 @@
  * 事件总线类 - 实现发布订阅模式
  * 用于组件/模块间的解耦通信
  */
-class eventBus {
+class EventBus {
   constructor() {
     /**
      * 存储所有事件及其监听器
