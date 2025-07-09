@@ -45,43 +45,36 @@ class EventBus {
    * 注册事件监听器
    * @param {string} type - 事件类型/名称
    * @param {Function} fn - 事件处理函数/监听器
-   * @returns {eventBus} - 返回实例本身，支持链式调用
    */
   on(type, fn) {
     if (!this.events[type]) {
       this.events[type] = new Set();
     }
     this.events[type].add(fn);
-    return this;
   }
 
   /**
    * 触发指定类型的事件
    * @param {string} type - 事件类型/名称
    * @param {...any} args - 传递给事件处理函数的参数
-   * @returns {eventBus} - 返回实例本身，支持链式调用
    */
   emit(type, ...args) {
     this.events[type]?.forEach((fn) => fn(...args));
-    return this;
   }
 
   /**
    * 移除事件监听器
    * @param {string} type - 事件类型/名称
    * @param {Function} fn - 要移除的事件处理函数/监听器
-   * @returns {eventBus} - 返回实例本身，支持链式调用
    */
   off(type, fn) {
     this.events[type]?.delete(fn);
-    return this;
   }
 
   /**
    * 注册只执行一次的事件监听器
    * @param {string} type - 事件类型/名称
    * @param {Function} fn - 事件处理函数/监听器
-   * @returns {eventBus} - 返回实例本身，支持链式调用
    */
   once(type, fn) {
     const onceFn = (...args) => {
@@ -89,7 +82,6 @@ class EventBus {
       this.off(type, onceFn);
     };
     this.on(type, onceFn);
-    return this;
   }
 }
 
