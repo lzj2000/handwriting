@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700">
+  <!-- 背景 -->
+  <rect width="900" height="700" fill="#f8f9fa" />
+  
+  <!-- 标题 -->
+  <text x="450" y="60" font-family="Arial, sans-serif" font-size="30" text-anchor="middle" font-weight="bold">发布订阅模式工作流程</text>
+  
+  <!-- 事件中心 -->
+  <rect x="300" y="140" width="300" height="120" rx="10" ry="10" fill="#fbbc05" stroke="#e0a800" stroke-width="2" />
+  <text x="450" y="180" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" font-weight="bold">事件中心</text>
+  <text x="450" y="220" font-family="Arial, sans-serif" font-size="18" text-anchor="middle">Event Channel</text>
+  
+  <!-- 发布者 -->
+  <g transform="translate(180, 380)">
+    <rect x="-100" y="-50" width="200" height="100" rx="10" ry="10" fill="#ea4335" stroke="#c62828" stroke-width="2" />
+    <text x="0" y="-10" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" fill="white" font-weight="bold">发布者</text>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="white">Publisher</text>
+  </g>
+  
+  <!-- 订阅者 -->
+  <g transform="translate(720, 380)">
+    <rect x="-100" y="-50" width="200" height="100" rx="10" ry="10" fill="#4285f4" stroke="#1a73e8" stroke-width="2" />
+    <text x="0" y="-10" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" fill="white" font-weight="bold">订阅者</text>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="white">Subscriber</text>
+  </g>
+  
+  <!-- 箭头和流程 -->
+  <!-- 发布者到事件中心 -->
+  <path d="M 230 330 L 350 260" stroke="#ea4335" stroke-width="3" fill="none" marker-end="url(#arrowhead)" />
+  <text x="250" y="280" font-family="Arial, sans-serif" font-size="16" fill="#ea4335" font-weight="bold">发布事件</text>
+  
+  <!-- 订阅者到事件中心 -->
+  <path d="M 670 330 L 550 260" stroke="#4285f4" stroke-width="3" fill="none" marker-end="url(#arrowhead)" />
+  <text x="550" y="320" font-family="Arial, sans-serif" font-size="16" fill="#4285f4" font-weight="bold">订阅事件</text>
+  
+  <!-- 事件中心到订阅者 -->
+  <path d="M 550 200 C 620 200 650 270 670 330" stroke="#34a853" stroke-width="3" fill="none" stroke-dasharray="5,5" marker-end="url(#arrowhead)" />
+  <text x="620" y="220" font-family="Arial, sans-serif" font-size="16" fill="#34a853" font-weight="bold">通知</text>
+  
+  <!-- 流程说明 -->
+  <g transform="translate(450, 550)">
+    <rect x="-350" y="-40" width="700" height="120" rx="10" ry="10" fill="#e8eaed" stroke="#dadce0" stroke-width="2" />
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" font-weight="bold">工作流程</text>
+    <text x="-300" y="35" font-family="Arial, sans-serif" font-size="18" text-anchor="start">1. 订阅者向事件中心订阅特定事件</text>
+    <text x="-300" y="65" font-family="Arial, sans-serif" font-size="18" text-anchor="start">2. 发布者向事件中心发布事件</text>
+    <text x="50" y="35" font-family="Arial, sans-serif" font-size="18" text-anchor="start">3. 事件中心通知相关订阅者</text>
+    <text x="50" y="65" font-family="Arial, sans-serif" font-size="18" text-anchor="start">4. 订阅者接收并处理事件</text>
+  </g>
+  
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" />
+    </marker>
+  </defs>
+</svg>

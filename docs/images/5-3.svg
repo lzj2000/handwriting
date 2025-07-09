@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700">
+  <!-- 背景 -->
+  <rect width="900" height="700" fill="#f8f9fa" />
+  
+  <!-- 标题 -->
+  <text x="450" y="60" font-family="Arial, sans-serif" font-size="30" text-anchor="middle" font-weight="bold">观察者模式工作流程</text>
+  
+  <!-- 主题/被观察者 -->
+  <g transform="translate(450, 200)">
+    <rect x="-150" y="-60" width="300" height="120" rx="10" ry="10" fill="#4285f4" stroke="#1a73e8" stroke-width="2" />
+    <text x="0" y="-10" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="white" font-weight="bold">主题/被观察者</text>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="white">Subject</text>
+  </g>
+  
+  <!-- 观察者1 -->
+  <g transform="translate(200, 420)">
+    <rect x="-100" y="-50" width="200" height="100" rx="10" ry="10" fill="#34a853" stroke="#1e8e3e" stroke-width="2" />
+    <text x="0" y="-10" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" fill="white" font-weight="bold">观察者1</text>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="white">Observer 1</text>
+  </g>
+  
+  <!-- 观察者2 -->
+  <g transform="translate(700, 420)">
+    <rect x="-100" y="-50" width="200" height="100" rx="10" ry="10" fill="#34a853" stroke="#1e8e3e" stroke-width="2" />
+    <text x="0" y="-10" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" fill="white" font-weight="bold">观察者2</text>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="white">Observer 2</text>
+  </g>
+  
+  <!-- 箭头和流程 -->
+  <!-- 观察者1到主题的注册箭头 -->
+  <path d="M 250 370 L 350 260" stroke="#34a853" stroke-width="3" fill="none" marker-end="url(#arrowhead)" />
+  <text x="320" y="310" font-family="Arial, sans-serif" font-size="16" fill="#34a853" font-weight="bold">注册</text>
+  
+  <!-- 观察者2到主题的注册箭头 -->
+  <path d="M 650 370 L 550 260" stroke="#34a853" stroke-width="3" fill="none" marker-end="url(#arrowhead)" />
+  <text x="550" y="310" font-family="Arial, sans-serif" font-size="16" fill="#34a853" font-weight="bold">注册</text>
+  
+  <!-- 主题到观察者1的通知箭头 -->
+  <path d="M 350 200 C 300 200 270 280 250 370" stroke="#4285f4" stroke-width="3" fill="none" stroke-dasharray="5,5" marker-end="url(#arrowhead)" />
+  <text x="220" y="290" font-family="Arial, sans-serif" font-size="16" fill="#4285f4" font-weight="bold">通知</text>
+  
+  <!-- 主题到观察者2的通知箭头 -->
+  <path d="M 550 200 C 600 200 630 280 650 370" stroke="#4285f4" stroke-width="3" fill="none" stroke-dasharray="5,5" marker-end="url(#arrowhead)" />
+  <text x="640" y="290" font-family="Arial, sans-serif" font-size="16" fill="#4285f4" font-weight="bold">通知</text>
+  
+  <!-- 流程说明 -->
+  <g transform="translate(450, 570)">
+    <rect x="-350" y="-40" width="700" height="100" rx="10" ry="10" fill="#e8eaed" stroke="#dadce0" stroke-width="2" />
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" font-weight="bold">工作流程</text>
+    <text x="-300" y="40" font-family="Arial, sans-serif" font-size="18" text-anchor="start">1. 观察者向主题注册</text>
+    <text x="-80" y="40" font-family="Arial, sans-serif" font-size="18" text-anchor="start">2. 主题状态变化</text>
+    <text x="140" y="40" font-family="Arial, sans-serif" font-size="18" text-anchor="start">3. 主题通知所有观察者</text>
+  </g>
+  
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" />
+    </marker>
+  </defs>
+</svg>
