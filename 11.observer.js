@@ -81,7 +81,7 @@ class Observer {
    * @description 当被观察者状态改变时被调用
    */
   update(data) {
-    console.log(`${this.name} 收到通知:${data}`);
+    console.log(`收到通知`, data);
   }
 }
 
