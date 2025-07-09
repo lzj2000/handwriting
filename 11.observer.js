@@ -37,7 +37,6 @@ class Subject {
    */
   constructor() {
     this.observers = []; // 观察者列表
-    this.state = null;   // 被观察者状态
   }
 
   /**
@@ -62,29 +61,10 @@ class Subject {
 
   /**
    * 通知所有观察者
-   * @param {any} data - 要发送给观察者的数据
    * @description 遍历观察者列表并调用每个观察者的update方法
    */
-  notify(data) {
-    this.observers.forEach((observer) => observer.update(data));
-  }
-
-  /**
-   * 设置状态并通知观察者
-   * @param {any} newState - 新的状态值
-   * @description 更新状态并触发通知
-   */
-  setState(newState) {
-    this.state = newState;
-    this.notify(newState);
-  }
-
-  /**
-   * 获取当前状态
-   * @returns {any} 当前状态值
-   */
-  getState() {
-    return this.state;
+  notify() {
+    this.observers.forEach((observer) => observer.update(this));
   }
 }
 
@@ -94,14 +74,7 @@ class Subject {
  * @description 实现观察者模式中的观察者角色
  */
 class Observer {
-  /**
-   * @constructor
-   * @param {string} name - 观察者名称
-   */
-  constructor(name) {
-    this.name = name;
-  }
-
+  constructor() {}
   /**
    * 更新方法
    * @param {any} data - 接收到的数据
@@ -117,10 +90,49 @@ class Observer {
 // 支持多个观察者
 // 状态变化的自动通知机制
 
-const subject = new Subject();
+class StudentSubject extends Subject {
+  constructor(name) {
+    super();
+    // 初始化学生状态
+    this.state = null;
+    this.name = name;
+    this.observers = [];
+  }
 
-const observer1 = new Observer("家长");
-const observer2 = new Observer("老师");
+  // 该方法用于获取当前的学生状态
+  getState() {
+    return this.state;
+  }
+
+  // 该方法用于改变学生状态
+  setState(state) {
+    // prd的值发生改变
+    this.state = state;
+    // 需求文档变更，立刻通知所有开发者
+    this.notify();
+  }
+}
+
+class StudentObserver extends Observer {
+  constructor(name) {
+    super();
+    this.state = {};
+    this.name = name;
+  }
+
+  // 重写一个具体的update方法
+  update(content) {
+    const state = content.getState();
+    const studentName = content.name;
+    const name = this.name;
+    console.log(`${name}收到通知：${studentName}的状态更新为${state}`);
+  }
+}
+
+const subject = new StudentSubject("小明");
+
+const observer1 = new StudentObserver("家长");
+const observer2 = new StudentObserver("老师");
 
 // 添加观察者
 subject.addObserver(observer1);
