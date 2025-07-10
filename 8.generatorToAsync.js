@@ -4,25 +4,25 @@
  * 一、目标
  * 使用Generator函数模拟async/await的实现原理
 
- * 二、功能要求
- *  - 接收Generator函数作为参数；
- *  - 使用Iterator迭代器逐步执行；
- *  - 处理Promise的异步流程；
- *  - 自动处理yield的返回值。
- * 
+ * 二、功能要求
+ *  - 接收Generator函数作为参数；
+ *  - 使用Iterator迭代器逐步执行；
+ *  - 处理Promise的异步流程；
+ *  - 自动处理yield的返回值。
+ * 
 
- * 三、实现步骤
- *  1. Generator执行：创建generator对象并逐步执行。
- *  2. Promise包装：将yielded值包装成Promise。
- *  3. 自动迭代：自动调用next()和throw()方法。
- *  4. 错误处理：捕获异常并传递给generator。
+ * 三、实现步骤
+ *  1. Generator执行：创建generator对象并逐步执行。
+ *  2. Promise包装：将yielded值包装成Promise。
+ *  3. 自动迭代：自动调用next()和throw()方法。
+ *  4. 错误处理：捕获异常并传递给generator。
 
- * 四、关键点说明
- *  - Generator函数可以暂停和恢复执行。
- *  - Promise.resolve确保所有值都是Promise。
- *  - 自动执行器负责驱动Generator运行完成。
- *  - 正确处理异常和错误传播机制。
- */
+ * 四、关键点说明
+ *  - Generator函数可以暂停和恢复执行。
+ *  - Promise.resolve确保所有值都是Promise。
+ *  - 自动执行器负责驱动Generator运行完成。
+ *  - 正确处理异常和错误传播机制。
+ */
 
 /**
  * 将Generator函数转换为async函数
@@ -44,9 +44,6 @@ function generatorToAsync(generatorFn) {
                 (data) => next(data),
                 (err) => iterator.throw(err)
               )
-              .catch((err) => {
-                next(iterator.throw(err));
-              });
           }
         } catch (error) {
           reject(error);
