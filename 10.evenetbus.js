@@ -59,7 +59,9 @@ class EventBus {
    * @param {...any} args - 传递给事件处理函数的参数
    */
   emit(type, ...args) {
-    this.events[type]?.forEach((fn) => fn(...args));
+    this.events[type]?.forEach((fn) => {
+      typeof fn === "function" && fn(...args);
+    });
   }
 
   /**
