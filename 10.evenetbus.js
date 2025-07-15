@@ -88,7 +88,7 @@ class EventBus {
 // 创建测试函数
 function testEventBus() {
   // 创建eventBus实例
-  const bus = new eventBus();
+  const bus = new EventBus();
   console.log('创建eventBus实例成功');
   
   // 测试on和emit方法
