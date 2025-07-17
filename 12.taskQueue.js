@@ -21,57 +21,66 @@
  *  - 执行宏任务后需要再次检查微任务队列
  */
 
-// 宏任务队列
-const macroTasks = [];
-// 微任务队列
-const microTasks = [];
-
-const pushMicro = (fn) => {
-  microTasks.push(fn);
-};
-
-const pushMacro = (fn) => {
-  macroTasks.push(fn);
-};
-
-startEventLoop = () => {
-  // 先清空微任务队列
-  while (microTasks.length) {
-    microTasks.shift()();
+class TaskQueue {
+  constructor() {
+    this.macroTasks = [];
+    this.microTasks = [];
   }
 
-  // 如果有宏任务，执行一个宏任务
-  if (macroTasks.length) {
-    macroTasks.shift()();
-
-    startEventLoop();
+  pushMicro(fn) {
+    this.microTasks.push(fn);
   }
-};
-/**
- * 测试函数
- */
+
+  pushMacro(fn) {
+    this.macroTasks.push(fn);
+  }
+
+  startEventLoop() {
+    while (this.macroTasks.length || this.microTasks.length) {
+      while (this.microTasks.length) {
+        const microTask = this.microTasks.shift();
+        try {
+          microTask();
+        } catch (error) {
+          console.error("微任务执行错误:", error);
+        }
+      }
+
+      if (this.macroTasks.length) {
+        const macroTask = this.macroTasks.shift();
+        try {
+          macroTask();
+        } catch (error) {
+          console.error("宏任务执行错误:", error);
+        }
+      }
+    }
+  }
+}
+
+const taskQueue = new TaskQueue();
+
 const run = () => {
   console.log("a");
 
-  pushMicro(() => {
+  taskQueue.pushMicro(() => {
     console.log("b");
-    pushMicro(() => {
+    taskQueue.pushMicro(() => {
       console.log("c");
     });
-    pushMacro(() => {
+    taskQueue.pushMacro(() => {
       console.log("d");
     });
   });
 
-  pushMacro(() => {
+  taskQueue.pushMacro(() => {
     console.log("e");
   });
 
   console.log("f");
-
-  startEventLoop();
 };
 
-// 执行测试
 run();
+
+taskQueue.startEventLoop();
 // 输出：a, f, b, c, e, d
