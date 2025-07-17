@@ -22,19 +22,23 @@
  */
 
 class TaskQueue {
-  constructor() {
+  constructor(runFunction) {
     this.macroTasks = [];
     this.microTasks = [];
+    this.runFunction = runFunction; // 保存传入的主任务函数
   }
 
+  // 添加微任务
   pushMicro(fn) {
     this.microTasks.push(fn);
   }
 
+  // 添加宏任务
   pushMacro(fn) {
     this.macroTasks.push(fn);
   }
 
+  // 启动事件循环，执行所有微任务和宏任务
   startEventLoop() {
     while (this.macroTasks.length || this.microTasks.length) {
       while (this.microTasks.length) {
@@ -56,9 +60,15 @@ class TaskQueue {
       }
     }
   }
-}
 
-const taskQueue = new TaskQueue();
+  // 执行传入的主任务函数并启动事件循环
+  run() {
+    if (typeof this.runFunction === "function") {
+      this.runFunction();
+      this.startEventLoop();
+    }
+  }
+}
 
 const run = () => {
   console.log("a");
@@ -80,7 +90,7 @@ const run = () => {
   console.log("f");
 };
 
-run();
+const taskQueue = new TaskQueue(run);
 
-taskQueue.startEventLoop();
+taskQueue.run();
 // 输出：a, f, b, c, e, d
