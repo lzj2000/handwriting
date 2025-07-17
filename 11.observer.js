@@ -63,8 +63,8 @@ class Subject {
    * 通知所有观察者
    * @description 遍历观察者列表并调用每个观察者的update方法
    */
-  notify() {
-    this.observers.forEach((observer) => observer.update(this));
+  notify(data) {
+    this.observers.forEach((observer) => observer.update(data));
   }
 }
 
@@ -108,8 +108,9 @@ class StudentSubject extends Subject {
   setState(state) {
     // prd的值发生改变
     this.state = state;
+    const name = this.name;
     // 需求文档变更，立刻通知所有开发者
-    this.notify();
+    this.notify({ state, name });
   }
 }
 
@@ -121,9 +122,8 @@ class StudentObserver extends Observer {
   }
 
   // 重写一个具体的update方法
-  update(content) {
-    const state = content.getState();
-    const studentName = content.name;
+  update(data) {
+    const { state, name: studentName } = data;
     const name = this.name;
     console.log(`${name}收到通知：${studentName}的状态更新为${state}`);
   }
