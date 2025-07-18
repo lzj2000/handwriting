@@ -1,0 +1,67 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="#ffffff"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="30" font-family="Arial" font-size="20" text-anchor="middle" fill="#333333">执行栈变化过程</text>
+  
+  <!-- 列标题 -->
+  <text x="300" y="70" font-family="Arial" font-size="16" text-anchor="middle" fill="#333333">运行整体代码</text>
+  <text x="500" y="70" font-family="Arial" font-size="16" text-anchor="middle" fill="#333333">执行foo</text>
+  <text x="700" y="70" font-family="Arial" font-size="16" text-anchor="middle" fill="#333333">执行bar</text>
+  
+  <!-- 空栈 -->
+  <rect x="50" y="100" width="100" height="240" fill="white" stroke="#333333" stroke-width="2"/>
+  
+  <!-- 第一阶段：全局执行上下文 -->
+  <rect x="250" y="100" width="100" height="240" fill="white" stroke="#333333" stroke-width="2"/>
+  <rect x="250" y="280" width="100" height="60" fill="#e6b422" stroke="#333333" stroke-width="1"/>
+  <text x="300" y="315" font-family="Arial" font-size="16" text-anchor="middle" fill="white">script</text>
+  
+  <!-- 第二阶段：foo函数执行 -->
+  <rect x="450" y="100" width="100" height="240" fill="white" stroke="#333333" stroke-width="2"/>
+  <rect x="450" y="220" width="100" height="60" fill="#e6b422" stroke="#333333" stroke-width="1"/>
+  <text x="500" y="255" font-family="Arial" font-size="16" text-anchor="middle" fill="white">foo</text>
+  <rect x="450" y="280" width="100" height="60" fill="#e6b422" stroke="#333333" stroke-width="1"/>
+  <text x="500" y="315" font-family="Arial" font-size="16" text-anchor="middle" fill="white">script</text>
+  
+  <!-- 第三阶段：bar函数执行 -->
+  <rect x="650" y="100" width="100" height="240" fill="white" stroke="#333333" stroke-width="2"/>
+  <rect x="650" y="160" width="100" height="60" fill="#e6b422" stroke="#333333" stroke-width="1"/>
+  <text x="700" y="195" font-family="Arial" font-size="16" text-anchor="middle" fill="white">bar</text>
+  <rect x="650" y="220" width="100" height="60" fill="#e6b422" stroke="#333333" stroke-width="1"/>
+  <text x="700" y="255" font-family="Arial" font-size="16" text-anchor="middle" fill="white">foo</text>
+  <rect x="650" y="280" width="100" height="60" fill="#e6b422" stroke="#333333" stroke-width="1"/>
+  <text x="700" y="315" font-family="Arial" font-size="16" text-anchor="middle" fill="white">script</text>
+  
+  <!-- 箭头定义 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e67e22"/>
+    </marker>
+  </defs>
+  
+  <!-- 入栈箭头 -->
+  <path d="M 150,310 C 180,310 220,310 250,310" stroke="#e67e22" stroke-width="2" marker-end="url(#arrowhead)" fill="none"/>
+  <text x="200" y="300" font-family="Arial" font-size="14" text-anchor="middle" fill="#e67e22">入栈</text>
+  
+  <!-- foo入栈箭头 -->
+  <path d="M 350,250 C 380,250 420,250 450,250" stroke="#e67e22" stroke-width="2" marker-end="url(#arrowhead)" fill="none"/>
+  <text x="400" y="240" font-family="Arial" font-size="14" text-anchor="middle" fill="#e67e22">入栈</text>
+  
+  <!-- bar入栈箭头 -->
+  <path d="M 550,190 C 580,190 620,190 650,190" stroke="#e67e22" stroke-width="2" marker-end="url(#arrowhead)" fill="none"/>
+  <text x="600" y="180" font-family="Arial" font-size="14" text-anchor="middle" fill="#e67e22">入栈</text>
+  
+  <!-- 出栈箭头 -->
+  <line x1="700" y1="380" x2="100" y2="380" stroke="#e67e22" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="400" y="400" font-family="Arial" font-size="14" text-anchor="middle" fill="#e67e22">出栈</text>
+  
+  <!-- 底部说明 -->
+  <text x="100" y="450" font-family="Arial" font-size="16" text-anchor="middle" fill="#333333">执行完整脚本</text>
+  <text x="300" y="450" font-family="Arial" font-size="16" text-anchor="middle" fill="#333333">执行完foo</text>
+  <text x="500" y="450" font-family="Arial" font-size="16" text-anchor="middle" fill="#333333">执行完bar</text>
+  
+  <!-- 输出说明 -->
+  <text x="400" y="480" font-family="Arial" font-size="14" text-anchor="middle" fill="#333333">输出顺序: script start → foo start → bar → foo end → script end</text>
+</svg>
