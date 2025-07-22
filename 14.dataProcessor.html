@@ -5,12 +5,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/benchmark/2.1.4/benchmark.min.js"></script>
+    <script src="./14.dataProcessor.js" defer></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            color: #212529;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="file"],
+        button {
+            display: block;
+            margin-bottom: 1rem;
+            padding: 10px 15px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: #fff;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        #resultsContainer,
+        #benchmark-results {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: #007bff;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 0.5rem;
+        }
+
+        #resultsContainer>div {
+            margin-bottom: 1rem;
+        }
+
+        div>div>div {
+            background-color: #e9ecef;
+            padding: 1rem;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+    </style>
 </head>
 
 <body>
     <input type="file" id="fileInput">
+    <button id="runBenchmark">性能测试</button>
+    <div id="benchmark-results"></div>
     <div id="resultsContainer"></div>
-    <script src="14.dataProcessor.js"></script>
 </body>
 
 </html>

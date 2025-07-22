@@ -24,7 +24,7 @@ const median = arr => {
 
 const getStatsFor = (arr, key) => {
     const values = arr.map(item => item[key]);
-    return {
+        return {
         sum: sum(values),
         mean: mean(values),
         min: min(values),
@@ -49,12 +49,13 @@ const calculateStatistics = (data, groupByKeys, targetKey) => {
 const renderResults = (container, title, data) => {
     const section = document.createElement('div');
     section.innerHTML = `<h3>${title}</h3>`;
-    const pre = document.createElement('div');
-    pre.textContent = JSON.stringify(data, null, 2);
-    section.appendChild(pre);
+    const contentDiv = document.createElement('div');
+    contentDiv.textContent = JSON.stringify(data, null, 2);
+    section.appendChild(contentDiv);
     container.appendChild(section);
 };
 
+var data
 document.getElementById('fileInput').addEventListener('change', function (event) {
     const fileInput = event.target;
     const file = fileInput.files[0];
@@ -65,7 +66,8 @@ document.getElementById('fileInput').addEventListener('change', function (event)
         reader.onload = function (event) {
             const content = event.target.result;
             try {
-                const data = JSON.parse(content).nodes
+                data = JSON.parse(content).nodes
+
                 const regionStatistics = calculateStatistics(data, ['region'], 'value');
                 const regionAndYearStatistics = calculateStatistics(data, ['region', 'year'], 'value');
                 const resourceStatistics = calculateStatistics(data, ['resource'], 'value');
@@ -92,3 +94,51 @@ document.getElementById('fileInput').addEventListener('change', function (event)
     }
 });
 
+document.getElementById('runBenchmark').addEventListener('click', function (event) {
+    if (!data) {
+        alert('请先上传文件')
+        return
+    }
+    const btn = event.target;
+    btn.disabled = true;
+    btn.textContent = '测试中...';
+    const benchmarkResults = document.getElementById('benchmark-results');
+    benchmarkResults.innerHTML = ''; // 清空之前的结果
+    const suite = new Benchmark.Suite();
+    suite.add('按 Region 分组统计 (value)', function () {
+        calculateStatistics(data, ['region'], 'value');
+    })
+        .add('按 Region 和 Year 分组统计 (value)', function () {
+            calculateStatistics(data, ['region', 'year'], 'value');
+        })
+        .add('按 Resource 分组统计 (value)', function () {
+            calculateStatistics(data, ['resource'], 'value');
+        })
+        .add('整体 Weight 统计', function () {
+            getStatsFor(data, 'weight');
+        })
+        .on('cycle', function (event) {
+            const log = String(event.target)
+            console.log(log);
+            benchmarkResults.innerHTML += `${log}<br/>`
+        })
+        .on('complete', function () {
+            let totalHz = 0;
+            this.forEach(benchmark => {
+                totalHz += benchmark.hz;
+            });
+            const averageHz = totalHz / this.length;
+
+            let summary = `所有测试用例的总 Hz (ops/sec): ${totalHz.toFixed(2)}<br/>`;
+            summary += `所有测试用例的平均 Hz (ops/sec): ${averageHz.toFixed(2)}`;
+
+            console.log(`总 Hz: ${totalHz.toFixed(2)}`);
+            console.log(`平均 Hz: ${averageHz.toFixed(2)}`);
+
+            benchmarkResults.innerHTML += summary;
+
+            btn.disabled = false;
+            btn.textContent = '性能测试';
+        })
+        .run({ 'async': true });
+});
